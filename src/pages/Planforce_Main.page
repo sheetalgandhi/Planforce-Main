@@ -69,10 +69,29 @@
                  document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue").disabled = true;                
                 }                
             }
+            showWeek(0,'none');
        }
         
         window.onload = loadNewHours;
-        
+
+        function showWeek(currentWeekNumber,direction){
+          var weekNumber;
+          if(direction=='none'){
+            var todayDate = moment();
+            weekNumber = todayDate.week();
+          }
+          if(direction=='next'){
+            weekNumber = parseInt(currentWeekNumber) + 1;
+          }
+          if(direction=='previous'){
+            weekNumber = parseInt(currentWeekNumber) - 1;
+          }          
+          var startOfWeek = moment().day("Sunday").week(weekNumber);
+          var endOfWeek= moment().day("Saturday").week(weekNumber);
+          document.getElementById("currentWeekId").innerHTML = startOfWeek.format('MMM DD') + ' - ' + endOfWeek.format('MMM DD');
+          document.getElementById("weekNumberId").value = weekNumber;
+        }
+
         function setVar(param){
             jQuery('[id$=myHiddenField]').val(param);
             passStringToController();
@@ -107,6 +126,8 @@
                 'Mobile-Design-Templates-master/common/js/jquery.touchwipe.min.js')}"/>
       <apex:includeScript value="{!URLFOR($Resource.Planforce_Design_Templates, 
                 'Mobile-Design-Templates-master/common/js/main.min.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.Moment, 'moment-develop/min/moment.min.js')}"/>
+
      </head>
                <style>
             .sf1buttonSFBlue {
@@ -144,17 +165,18 @@
                     <h1>S1 Planforce</h1>
                 </section>
                 <section class="border-bottom border--3 clear">
-                    <table class="fixed-table">
+                   <input type="hidden" id="weekNumberId" value=""/>
+                   <div>
                         <caption class="bg-2 phm ptm pbs tc">
-                            <a class="fl" title="Left">
+                            <a class="fl" title="Left" href="javascript:showWeek(document.getElementById('weekNumberId').value,'previous');">
                               <span class="text-color-2 f4 lh-20 icon-utility-left"></span>
                             </a>
-                            <a class="fr" title="Right" >
+                            <a class="fr" title="Right" href="javascript:showWeek(document.getElementById('weekNumberId').value,'next');">
                               <span class="text-color-2 f4 lh-20 icon-utility-right"></span>
                             </a>
-                            <h2 class="text-color-1 dib man fw-bold f3">{!startOfWeek} - {!endOfWeek}</h2>
+                            <h2 class="text-color-1 dib man fw-bold f3"><label id="currentWeekId"></label></h2>
                         </caption>
-                    </table>
+                   </div>
                 </section>                   
             </div> 
             <apex:outputpanel id="results"  >
@@ -171,11 +193,11 @@
                                     lastWeekHours.push('{!activity.Last_Week_Hours__c}');
                                     currentWeekHours.push('{!activity.Current_Week_Hours__c}');
                                 </script> 
-                                <li>
+                                <li style="padding: 24.5px;">
                                    <div style="float:left; width: 120px;">
                                        <a href="javascript:navigateToDetailPage('{!activity.Activity_Name__c}','{!count}');">{!activity.Activity_Name__c}</a>
                                    </div>
-                                   <div style="width: 35px; margin-left:140px; ">        
+                                   <div style="width: 45px; margin-left:140px; ">        
                                            <apex:inputtext value="{!defaultValue}" id="defaultValue"/>
                                            
                                     </div>
@@ -197,7 +219,7 @@
                     <apex:actionFunction name="passHoursToController" action="{!save}" />
                     <!-- <apex:param name="allHours" value="{!all_hours}" assignTo="{!allHours}" /> -->
                     <br/>
-                    <apex:commandButton styleClass="btn bg-primary-btn btn--primary pvs size-full brm border border--1 wht f3 fw-semibold" value="WS Test" action="{!testWS}" rerender="errors" oncomplete="restyle();" />
+          <!--          <apex:commandButton styleClass="btn bg-primary-btn btn--primary pvs size-full brm border border--1 wht f3 fw-semibold" value="WS Test" action="{!testWS}" rerender="errors" oncomplete="restyle();" /> -->
                     
                     
             </apex:outputpanel>
