@@ -1,0 +1,104 @@
+<apex:page docType="html-5.0"
+  standardStylesheets="false"
+  applyHtmlTag="false"
+  applyBodyTag="false"
+  showHeader="false"
+  sidebar="false" controller="IndexController1">   
+<html> 
+    <head>
+<style>
+.buttonStyle1 { 
+color:white !important;
+background:#2a93d7 !important; 
+text-align:center;  
+background-image:none;
+width:85%;
+text-align:center;
+padding-top:4px;
+font-size:22px;
+font-weight : bold;
+font-family: Helvetica, Arial, Sans-Serif; text-decoration: none;
+}
+
+.buttonStyle2 { 
+color:white !important;
+background:#2a93d7 !important; 
+text-align:center;  
+background-image:none;
+width:100%;
+text-align:center;
+padding-top:4px;
+font-size:22px;
+}
+
+.buttonStyle3 { 
+color:white !important;
+background:#4AB471 !important; 
+text-align:center;  
+background-image:none;
+width:85%;
+text-align:center;
+padding-top:4px;
+font-size:22px;
+font-weight : bold;
+}
+
+.buttonStyle4 { 
+color:white !important;
+background:#344a5f !important; 
+text-align:center;  
+background-image:none;
+width:100%;
+text-align:center;
+padding-top:4px;
+font-size:15px;
+}
+</style>
+<script type="text/Javascript">
+    function displayMsg(){
+        alert('Timesheet successfully submitted');
+    }
+</script>
+</head>
+<body style="height:100%">
+    <div style="background:#344A5F !important;height:100%">
+        <apex:form >
+        <!-- acitivities     action="{!}" -->
+            <apex:pageBlock >
+            <!-- calendar compoenent -->
+
+            <div style="color:white !important;">
+            <br/>
+                <center><h2> {!startOfWeek} - {!endOfWeek}</h2></center> 
+            </div>
+            <apex:pageBlockSection columns="3">                
+            <apex:dataTable var="name" value="{!activityResourceList}">
+                <apex:column >
+                   <apex:outputField value="{!name.Activity_Name__c}"/>        
+                </apex:column>
+                <apex:column >   
+                   <apex:inputField value="{!name.Last_Week_Hours__c}" />            
+                </apex:column>
+                <apex:column rendered="false">   
+                   <apex:inputField value="{!name.Default_Value__c}" />            
+                </apex:column>
+                <apex:column >
+                   <apex:commandLink id="SImage" action="{!nextPage}">
+                   <apex:param name="key" value="{!name.Activity_Name__c}"/>
+                   <apex:image url="{!$Resource.next}" />
+                </apex:commandLink>   
+                </apex:column>
+            </apex:dataTable>
+       </apex:pageBlockSection>
+             <br/>
+             <br/>
+<!--             <apex:pageBlockButtons location="bottom" style="width:100%;align:center;"> -->
+                <center><apex:commandButton id="sameAsLastWeek" title="Same as Last Week" value="Same as Last Week" action="{!saveAsLastWeek}" styleClass="buttonStyle1"/></center>
+                <center><apex:commandButton id="Submit" title="Submit" value="Done For The Week!!!" action="{!submit}" styleClass="buttonStyle3"/></center>
+ <!--           </apex:pageBlockButtons>-->
+       </apex:pageBlock>
+    </apex:form>            
+  </div>
+   </body>  
+ </html>   
+</apex:page>

@@ -1,0 +1,102 @@
+<apex:page controller="secondPageController2">
+<style>
+.buttonStyle { 
+color:white !important;
+background:#00CC00 !important; 
+text-align:center;  
+background-image:none;
+},
+.myFormStyle { 
+background:red !important; 
+
+}
+
+</style>
+    <apex:form styleClass="myFormStyle">
+    
+        <apex:pageBlock title="$CurrentPage.parameters.project" >
+            <apex:pageBlockSection >
+                <table align="center" style="padding:30px;background:#EFEFEF">
+                    <tr>
+          <td>
+          Sunday
+             <!-- {!$CurrentPage.parameters.weekstart}  -->
+          </td>
+          <td>
+             <!-- <input id="sun" type="number" min = "0" max=" 24" width= "10px" /> -->
+              <apex:inputText value="{!sun}"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          Monday
+             <!-- System.today().toStartOfWeek().addDays(1); -->
+          </td>
+          <td>
+           
+              <apex:inputText value="{!mon}"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Tuesday
+          </td>
+          <td>
+             
+              <apex:inputText value="{!tue}"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+              Wednesday
+          </td>
+          <td>
+             
+               <apex:inputText value="{!wed}"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+             Thursday
+          </td>
+          <td>
+             
+               <apex:inputText value="{!thu}"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+              Friday
+          </td>
+          <td>
+             
+               <apex:inputText value="{!fri}"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+             Saturday
+          </td>
+          <td>
+             
+               <apex:inputText value="{!sat}"/>
+          </td>
+        </tr>
+        
+        <tr>
+         <td colspan="2">
+           <apex:commandButton value="Save" action="{!save}" styleClass="buttonStyle2"/>
+         </td>
+         </tr>
+         <tr>
+         <td colspan="2">
+           <apex:commandButton value="Back" action="{!back}" styleClass="buttonStyle " />
+         </td>
+        </tr>
+                </table>
+               
+            </apex:pageBlockSection>
+             
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

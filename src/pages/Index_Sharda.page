@@ -1,0 +1,252 @@
+<apex:page docType="html-5.0"
+  standardStylesheets="false"
+  applyHtmlTag="false"
+  applyBodyTag="false"
+  showHeader="false"
+  sidebar="false" 
+  controller="Sharda_Controller">
+  
+    <script type="text/javascript">
+        var s1 = {};
+        var activityName = [];
+        var lastWeekHours = [];
+        var currentWeekHours = [];
+        
+        var all_hours=[];
+        var flag = false; 
+        var flag2 = false;       
+        $(document).ready(function() {
+        s1 = $('div#one-app').oneStarter('record-action');
+       });
+       window.onload = function(){
+       document.cookie = cookie+"=GynJ3DHCk4UjrvFLnS7muUCVn7Mqrv3KvvEhyUwkvj2OQK%2fVs%2bqW%2byRzwrsu52tklT4ALBiXe%2bJ3EukyRp0BJv89XfI7pGgRuDZvznfltNMd1XnzHASV2P71htyVVjiEqI553UEIclhQS24A9bkHrKO69NTuktIzU%2brdZmlHVFZNgU0vO73b9AGG2bMsTTEMHoE9NtSGGCuyObiSn3Azc5TrDAoIv1BK8lU%2bIgD83ilNJXQawV%2bjC9wldWuOU3dNwIKzzni7YAXFe05Cr7CjFmVQCfHpTsDUYPGOxBdJJPY%3d";
+               
+       };
+        function navigateToDetailPage(activity,count) {
+          alert('inside navigateToDetailPage');
+          sforce.one.navigateToURL('/apex/second_page_sharda?activity=' + activity + '&currentActivityHours=' + document.getElementById("j_id0:j_id9:repeatId:" + count + ":defaultValue").value);
+        }
+
+      function nextWeek(endOfWeek) {
+          alert(endOfWeek);
+          // call setter for wholeWeek;
+          
+        }
+
+        function populateLastWeekHours() {
+            var arrayLength = lastWeekHours.length;
+            for (var i = 0; i < arrayLength; i++) {
+                var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                listElement.value = lastWeekHours[i];
+            }
+            
+        }
+        
+        function loadNewHours() {
+            var onload = '{!$CurrentPage.parameters.onload}';
+            var flag = '{!$CurrentPage.parameters.flag}';
+            alert("inside loadnewhours function");
+            var dailyHour = '{!$CurrentPage.parameters.dailyHours}';
+             for(key in dailyHour) {
+              alert("key "+key+"has value "+ dailyHour[key]);
+             }
+            //alert(dailyHour);
+            if(onload){
+                var arrayLength = activityName.length;
+                for (var i = 0; i < arrayLength; i++) {
+                    var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                    listElement.value = currentWeekHours[i];
+                }
+                
+                for (var i = 0; i < arrayLength; i++) {
+                    var selected_activity = '{!$CurrentPage.parameters.activity}';
+                    if(activityName[i] === selected_activity){
+                        var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                        listElement.value = '{!$CurrentPage.parameters.totalHours}';
+                    }
+                    else{
+                        var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                        listElement.value = lastWeekHours[i];
+                    }
+                }
+            }
+            if(flag){
+                populateLastWeekHours();
+                for (var i = 0; i < activityName.length; i++) {
+                 document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue").disabled = true;                
+                }                
+            }
+       }
+        
+        window.onload = loadNewHours;
+        
+        function setVar(param){
+            jQuery('[id$=myHiddenField]').val(param);
+            passStringToController();
+        }
+
+      function setHours(){
+             for (var i = 0; i < activityName.length; i++) {
+              all_hours[i] = parseInt(document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue").value ,10);
+           
+              }
+              jQuery('[id$=allHoursHidden]').val(all_hours);
+              flag2 = true;
+             <!-- document.getElementById("{!$Component.allHoursHidden}").value = all_hours; -->
+              passHoursToController();
+         } 
+
+    </script>
+    
+  <html>
+
+   <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, 
+                                  minimum-scale=1, maximum-scale=1, user-scalable=no"/> 
+      <apex:stylesheet value="{!URLFOR($Resource.Planforce_Design_Templates, 
+                'Mobile-Design-Templates-master/common/css/app.min.css')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'icons.css')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'styles.css')}"/>                
+      <apex:includeScript value="{!URLFOR($Resource.Planforce_Design_Templates, 
+                'Mobile-Design-Templates-master/common/js/jQuery2.0.2.min.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.Planforce_Design_Templates, 
+                'Mobile-Design-Templates-master/common/js/jquery.touchwipe.min.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.Planforce_Design_Templates, 
+                'Mobile-Design-Templates-master/common/js/main.min.js')}"/>
+     </head>
+               <style>
+            .sf1buttonSFBlue {
+             font-size: 16px;
+             color: #44596c;
+             text-shadow: none;
+             margin: 0;
+             padding: 4px 14px;
+             height: 35px;
+             font-size: 16px;
+             font-family: 'ProximaNovaSoft-Regular', 'Helvetica Neue';
+             font-weight: normal;
+             border: 1px solid #bbc0c4;
+             border-radius: 5px;
+             background: -moz-linear-gradient(#2a93d5,#107abb);
+             background: -webkit-linear-gradient(#2a93d5,#107abb)
+             background: -ms-linear-gradient(#2a93d5,#107abb);
+             background: linear-gradient(#2a93d5,#107abb);
+             box-shadow: none;
+             text-align: center;
+             cursor: pointer;
+             box-sizing: border-box;
+             color:white;
+             }          
+          </style>
+   
+    <div id="one-app">
+    <center>
+        <apex:form >
+            <apex:outputPanel id="errors">
+                <apex:pageMessages />
+            </apex:outputPanel>
+            <div id="form">
+                <section class="bg-7 border-bottom border--3">
+                    <h1>S1 Planforce</h1>
+                </section>
+                <section class="border-bottom border--3 clear">
+                    <table class="fixed-table">
+                        <caption class="bg-2 phm ptm pbs tc">
+                            <a class="fl" title="Left">
+                              <span class="text-color-2 f4 lh-20 icon-utility-left"></span>
+                            </a>
+                            <a class="fr" title="Right" >
+                              <span class="text-color-2 f4 lh-20 icon-utility-right"></span>
+                            </a>
+                            <h2 class="text-color-1 dib man fw-bold f3">{!startOfWeek} - {!endOfWeek}</h2>
+                        </caption>
+                    </table>
+                </section>                   
+            </div> 
+            <apex:outputpanel id="results"  >
+                <div id="detail-example">            
+                    
+                    <section>
+                        <h2>{!userName}'s Work</h2>
+                        <ul class="list-view left-thumbs right-one-icons">
+                        <div align="center">
+                            <apex:variable var="count" value="{!0}"   /> 
+                            <apex:repeat value="{!activityList}" var="activity" id="repeatId">
+                                <script> 
+                                    activityName.push('{!activity.Activity_Name__c}');
+                                    lastWeekHours.push('{!activity.Last_Week_Hours__c}');
+                                    currentWeekHours.push('{!activity.Current_Week_Hours__c}');
+                                </script> 
+                                <li style="padding: 24.5px;">
+                                   <div style="float:left; width: 120px;">
+                                       <a href="javascript:navigateToDetailPage('{!activity.Activity_Name__c}','{!count}');">{!activity.Activity_Name__c}</a>
+                                   </div>
+                                   <div style="width: 35px; margin-left:140px; ">        
+                                           <apex:inputtext value="{!defaultValue}" id="defaultValue"/>
+                                           
+                                    </div>
+                                    <div style="float:right;">
+                                           <a href="javascript:navigateToDetailPage('{!activity.Activity_Name__c}','{!count}');"><div class="list-view-icons"><span class="icon-right-arrow">&nbsp;</span></div></a>
+                                       </div>
+                                </li>
+                                <apex:variable value="{!count+1}" var="count"/>
+                            </apex:repeat>
+                          </div>
+                        </ul>
+                    </section>
+                </div>
+                    <br/>
+                    <apex:commandButton styleClass="btn bg-primary-btn btn--primary pvs size-full brm border border--1 wht f3 fw-semibold" value="Same As Last Week" action="javascript:populateLastWeekHours();" rerender="errors" oncomplete="restyle();" />
+                    <br/>
+                    <br/>
+                    <apex:commandButton styleClass="btn bg-primary-btn btn--primary pvs size-full brm border border--1 wht f3 fw-semibold" value="Done For The Week" onclick="setHours(); return false;"/>
+                    <apex:actionFunction name="passHoursToController" action="{!save}" />
+                    <!-- <apex:param name="allHours" value="{!all_hours}" assignTo="{!allHours}" /> -->
+                    <br/>
+                    <apex:commandButton styleClass="btn bg-primary-btn btn--primary pvs size-full brm border border--1 wht f3 fw-semibold" value="WS Test" action="{!testWS}" rerender="errors" oncomplete="restyle();" />
+                    
+                    
+            </apex:outputpanel>
+            
+<!-- Hidden field to store a new value of the variable -->
+<apex:inputHidden value="{!myString}" id="myHiddenField"/>
+<apex:inputHidden id="allHoursHidden" value="{!allHours}" />
+
+<!-- Action function for the rerendering -->
+<apex:actionFunction name="passStringToController" action="{!myMethod}" rerender="myHiddenField"/>
+
+
+
+<!-- A command button for sending a call to the function -->
+<!--<apex:commandButton value="Test me" onclick="setVar('new value'); return false;" />-->
+
+<!--<ul class="list-view right-one-icons">
+            <li>
+                <a href="#" class="content">
+                    <h2>Acme 1,200 Widgets</h2>
+                    <div class="list-view-icons">
+                        <span class="icon-right-arrow">&nbsp;</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="content">
+                    <h2>100 Servers</h2>
+                    <div class="list-view-icons">
+                        <span class="icon-right-arrow">&nbsp;</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        -->
+        </apex:form>
+        </center>
+    </div>
+
+
+<script>
+    $('div#one-app').oneStarter('app');
+</script>
+  </html>  
+</apex:page>

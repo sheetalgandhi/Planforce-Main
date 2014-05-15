@@ -1,0 +1,153 @@
+<apex:page docType="html-5.0"
+  standardStylesheets="false"
+  applyHtmlTag="false"
+  applyBodyTag="false"
+  showHeader="false"
+  sidebar="false" 
+  controller="Sharda_Controller">
+  
+    <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'icons.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'styles.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'OneStarter.css')}"/>
+    <apex:stylesheet value="app_min_css"/>
+   
+     <!-- JavaScript files -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.TouchSwipe,'jquery.touchSwipe.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.OneStarter,'jquery.onestarter.js')}"/>
+    <apex:includeScript value="/canvas/sdk/js/publisher.js"/>
+    <script>
+        var s1 = {};
+        $(document).ready(function() {
+        s1 = $('div#one-app').oneStarter('record-action');
+       });
+       
+        function navigateToMainPage() {
+          sforce.one.navigateToURL('/apex/Index_Sharda/');
+        }
+        var activityName = [];
+        var lastWeekHours = [];
+         
+        function  save_total(activity){
+            var total = 0;
+            var daily_hours = new Array();
+            for (var i = 0; i < 7; i++) {
+                total = total + parseInt (document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value,10);
+                daily_hours[:weekId] = document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value;
+               // daily_hours.push(document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value);
+            }                
+            sforce.one.navigateToURL('/apex/Index_Sharda?totalHours=' + total + '&activity=' + activity + '&onload=true&dailyHours='+daily_hours);
+        }
+        function loadWeek() {
+          var currentActivityHours = '{!$CurrentPage.parameters.currentActivityHours}';
+          currentActivityHours = currentActivityHours/7;
+          for (var i = 0; i < 7; i++) {
+              //document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = Math.round(currentActivityHours);
+              //document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = currentActivityHours;
+              document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = Math.ceil(currentActivityHours * 100)/100;
+          }                
+              
+        }
+        window.onload = loadWeek;
+    </script>
+    
+  <html>
+      <head>
+          <style>
+            .sf1buttonSFBlue {
+             font-size: 16px;
+             color: #44596c;
+             text-shadow: none;
+             margin: 0;
+             padding: 4px 14px;
+             height: 35px;
+             font-size: 16px;
+             font-family: 'ProximaNovaSoft-Regular', 'Helvetica Neue';
+             font-weight: normal;
+             border: 1px solid #bbc0c4;
+             border-radius: 5px;
+             background: -moz-linear-gradient(#2a93d5,#107abb);
+             background: -webkit-linear-gradient(#2a93d5,#107abb)
+             background: -ms-linear-gradient(#2a93d5,#107abb);
+             background: linear-gradient(#2a93d5,#107abb);
+             box-shadow: none;
+             text-align: center;
+             cursor: pointer;
+             box-sizing: border-box;
+             color:white;
+             }          
+          </style>
+      </head>   
+    <div id="one-app">
+    <center>
+        <apex:form >
+            <apex:outputPanel id="errors">
+                <apex:pageMessages />
+            </apex:outputPanel>
+            <div id="form">
+                <section>
+                    <h1>Weekly Details</h1>
+                </section>                   
+             </div> 
+            <apex:outputpanel id="results"  >
+                <div id="detail-example">
+                    <section>
+                        <center><h1>{!$CurrentPage.parameters.activity}</h1></center>
+                    </section>    
+                    <section>
+                        <ul class="list-plain fw-normal bg-2 man pan">
+                            <apex:repeat value="{!wholeWeek}" var="day" id="weekId">
+                                <li class="active--list-1 pam text-color-1 f4 border-bottom border--3">
+                                    <table width="100%">
+                                        <tr>
+                                            <td width="50%">{!day}</td>
+                                            <td width="50%"><apex:inputtext value="{!defaultValue}" id="dayId"/></td>
+                                        </tr>
+                                    </table>
+                                </li>    
+                            </apex:repeat>
+                        </ul>
+                    </section>
+                </div>
+                    <br/>
+                    <apex:commandButton styleClass="sf1buttonSFBlue" value="Save" action="javascript:save_total('{!$CurrentPage.parameters.activity}');" rerender="errors" oncomplete="restyle();" />
+                    <br/>
+                    <br/>
+                    <apex:commandButton styleClass="sf1buttonSFBlue" value="Back" action="javascript:navigateToMainPage();"/>
+            </apex:outputpanel>
+            
+<!-- Hidden field to store a new value of the variable -->
+<!--<apex:inputHidden value="{!total}" id="totalHidden"/>
+<apex:inputHidden value="{!currentActivity}" id="activityHidden"/>-->
+
+<!--<apex:actionFunction name="sendCurrentHoursToController" action="{!saveCurrentHours}" />-->
+
+<!--<ul class="list-view right-one-icons">
+            <li>
+                <a href="#" class="content">
+                    <h2>Acme 1,200 Widgets</h2>
+                    <div class="list-view-icons">
+                        <span class="icon-right-arrow">&nbsp;</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="content">
+                    <h2>100 Servers</h2>
+                    <div class="list-view-icons">
+                        <span class="icon-right-arrow">&nbsp;</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        -->
+        </apex:form>
+        </center>
+    </div>
+
+
+<script>
+    $('div#one-app').oneStarter('app');
+</script>
+  </html>  
+</apex:page>

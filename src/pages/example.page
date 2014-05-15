@@ -1,0 +1,11 @@
+<apex:page >
+    <apex:stylesheet value="{!URLFOR($Resource.onestarter_icons,'icons.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.onestarter_style,'styles.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.onestarterCSS,'OneStarter.css')}"/>
+    
+    <!-- JavaScript files -->
+    <apex:includeScript value="{!URLFOR($Resource.jquery)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.onestarter_touchswipe,'jquery.touchSwipe.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.onestarter_onestarterjs,'jquery.onestarter.js')}"/>
+    <apex:includeScript value="/canvas/sdk/js/publisher.js"/>
+</apex:page>

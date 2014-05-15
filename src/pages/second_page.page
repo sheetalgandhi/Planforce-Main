@@ -1,0 +1,156 @@
+<apex:page docType="html-5.0"
+  standardStylesheets="false"
+  applyHtmlTag="false"
+  applyBodyTag="false"
+  showHeader="false"
+  sidebar="false" controller="secondPageController"> 
+<html> 
+    <head>
+<style>
+.buttonStyle1 { 
+color:white !important;
+background:#2a93d7 !important; 
+text-align:center;  
+background-image:none;
+width:85%;
+text-align:center;
+padding-top:4px;
+font-size:22px;
+font-weight : bold;
+font-family: Helvetica, Arial, Sans-Serif; text-decoration: none;
+}
+
+.buttonStyle2 { 
+color:white !important;
+background:#2a93d7 !important; 
+text-align:center;  
+background-image:none;
+width:100%;
+text-align:center;
+padding-top:4px;
+font-size:22px;
+}
+
+.buttonStyle3 { 
+color:white !important;
+background:#4AB471 !important; 
+text-align:center;  
+background-image:none;
+width:85%;
+text-align:center;
+padding-top:4px;
+font-size:22px;
+font-weight : bold;
+}
+
+.buttonStyle4 { 
+color:white !important;
+background:#344a5f !important; 
+text-align:center;  
+background-image:none;
+width:100%;
+text-align:center;
+padding-top:4px;
+font-size:15px;
+}
+</style>
+</head>
+<body>
+<!-- <apex:inputHidden value="{!$CurrentPage.parameters.project}" id="theHiddenActivityName"/> -->
+    <div style="background:#344A5F !important;height:100%">
+        <apex:form >
+        <apex:pageBlock >
+                    <div style="color:white !important;"  >
+                <center><h1>{!$CurrentPage.parameters.project}</h1></center>
+                <center><h2> {!startOfWeek} - {!endOfWeek}</h2></center> 
+            </div>
+            <center>
+            <apex:pageBlockSection >
+            
+            <div>
+            
+                <table >
+                    <tr>
+          <td style="color:#FFFFFF !important;">
+           Sunday  {!startOfWeek}
+             <!-- {!$CurrentPage.parameters.weekstart}  -->
+          </td>
+          <td>
+             <!-- <input id="sun" type="number" min = "0" max=" 24" width= "10px" /> -->
+              <apex:inputText style="width:50%" value="{!sun}"/>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:#FFFFFF !important;">
+          Monday Mar 10
+             <!-- System.today().toStartOfWeek().addDays(1); -->
+          </td>
+          <td>
+           
+              <apex:inputText style="width:50%" value="{!mon}"/>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:#FFFFFF !important;">
+            Tuesday  Mar 11
+          </td>
+          <td>
+             
+              <apex:inputText style="width:50%" value="{!tue}"/>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:#FFFFFF !important;">
+              Wednesday Mar 12
+          </td>
+          <td>
+             
+               <apex:inputText style="width:50%" value="{!wed}"/>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:#FFFFFF !important;">
+             Thursday Mar 13
+          </td>
+          <td>
+             
+               <apex:inputText style="width:50%" value="{!thu}"/>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:#FFFFFF !important;">
+              Friday Mar 14
+          </td>
+          <td>
+             
+               <apex:inputText style="width:50%" value="{!fri}"/>
+          </td>
+        </tr>
+        <tr>
+          <td style="color:#FFFFFF !important;">
+             Saturday {!endOfWeek}
+          </td>
+          <td>
+             
+               <apex:inputText style="width:50%" value="{!sat}"/>
+          </td>
+        </tr>
+        
+                </table>
+                
+             </div>  
+             
+            </apex:pageBlockSection>
+            </center>
+           <center><apex:commandButton value="Save" action="{!save}" styleClass="buttonStyle1">
+           <apex:param name="key" value="{!$CurrentPage.parameters.project}" assignTo="{!activity_selected}"/>
+           </apex:commandButton>
+           </center>
+           <center><apex:commandButton value="Back" action="{!back}" styleClass="buttonStyle1"/></center>
+             
+        </apex:pageBlock>
+    </apex:form>
+  </div>
+   </body>  
+ </html>      
+</apex:page>

@@ -1,0 +1,19 @@
+{
+    "username": "sheetal.gandhi@planforce.com", 
+    "environment": "developer", 
+    "project_name": "Planforce", 
+    "workspace": "/Users/sgandhi/Mavensmate", 
+    "org_url": "", 
+    "namespace": "", 
+    "id": "7PNRH800PTMQTBW9U1QKSIHVPH639SZF", 
+    "metadata_container": "1dci0000000RbxDAAS", 
+    "subscription": [
+        "ApexClass", 
+        "ApexComponent", 
+        "ApexPage", 
+        "ApexTrigger", 
+        "CustomObject", 
+        "Profile", 
+        "StaticResource"
+    ]
+}
