@@ -4,7 +4,7 @@
   applyBodyTag="false"
   showHeader="false"
   sidebar="false" 
-  controller="Planforce_Main_Controller">
+  controller="Planforce_Main_Controller" id="pfpage">
   
     <script>
         var s1 = {};
@@ -23,7 +23,7 @@
                
        };
         function navigateToDetailPage(activity,count) {
-          sforce.one.navigateToURL('/apex/Planforce_Main_Detail?activity=' + activity + '&currentActivityHours=' + document.getElementById("j_id0:j_id9:repeatId:" + count + ":defaultValue").value);
+          sforce.one.navigateToURL('/apex/Planforce_Main_Detail?activity=' + activity + '&currentActivityHours=' + document.getElementById("pfpage:pfform:repeatId:" + count + ":defaultValue").value);
         }
 
       function nextWeek(endOfWeek) {
@@ -35,7 +35,7 @@
         function populateLastWeekHours() {
             var arrayLength = lastWeekHours.length;
             for (var i = 0; i < arrayLength; i++) {
-                var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                var listElement = document.getElementById("pfpage:pfform:repeatId:" + i + ":defaultValue");
                 listElement.value = lastWeekHours[i];
             }
             
@@ -47,18 +47,18 @@
             if(onload){
                 var arrayLength = activityName.length;
                 for (var i = 0; i < arrayLength; i++) {
-                    var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                    var listElement = document.getElementById("pfpage:pfform:repeatId:" + i + ":defaultValue");
                     listElement.value = currentWeekHours[i];
                 }
                 
                 for (var i = 0; i < arrayLength; i++) {
                     var selected_activity = '{!$CurrentPage.parameters.activity}';
                     if(activityName[i] === selected_activity){
-                        var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                        var listElement = document.getElementById("pfpage:pfform:repeatId:" + i + ":defaultValue");
                         listElement.value = '{!$CurrentPage.parameters.totalHours}';
                     }
                     else{
-                        var listElement = document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue");
+                        var listElement = document.getElementById("pfpage:pfform:repeatId:" + i + ":defaultValue");
                         listElement.value = lastWeekHours[i];
                     }
                 }
@@ -66,7 +66,7 @@
             if(flag){
                 populateLastWeekHours();
                 for (var i = 0; i < activityName.length; i++) {
-                 document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue").disabled = true;                
+                 document.getElementById("pfpage:pfform:repeatId:" + i + ":defaultValue").disabled = true;                
                 }                
             }
             showWeek(0,'none');
@@ -99,7 +99,7 @@
 
       function setHours(){
              for (var i = 0; i < activityName.length; i++) {
-              all_hours[i] = parseInt(document.getElementById("j_id0:j_id9:repeatId:" + i + ":defaultValue").value ,10);
+              all_hours[i] = parseInt(document.getElementById("pfpage:pfform:repeatId:" + i + ":defaultValue").value ,10);
            
               }
               jQuery('[id$=allHoursHidden]').val(all_hours);
@@ -156,7 +156,7 @@
    
     <div id="one-app">
     <center>
-        <apex:form >
+        <apex:form id="pfform">
             <apex:outputPanel id="errors">
                 <apex:pageMessages />
             </apex:outputPanel>
