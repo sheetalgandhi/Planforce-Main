@@ -22,8 +22,13 @@
        document.cookie = cookie+"=GynJ3DHCk4UjrvFLnS7muUCVn7Mqrv3KvvEhyUwkvj2OQK%2fVs%2bqW%2byRzwrsu52tklT4ALBiXe%2bJ3EukyRp0BJv89XfI7pGgRuDZvznfltNMd1XnzHASV2P71htyVVjiEqI553UEIclhQS24A9bkHrKO69NTuktIzU%2brdZmlHVFZNgU0vO73b9AGG2bMsTTEMHoE9NtSGGCuyObiSn3Azc5TrDAoIv1BK8lU%2bIgD83ilNJXQawV%2bjC9wldWuOU3dNwIKzzni7YAXFe05Cr7CjFmVQCfHpTsDUYPGOxBdJJPY%3d";
                
        };
+
         function navigateToDetailPage(activity,count) {
-          sforce.one.navigateToURL('/apex/Planforce_Main_Detail?activity=' + activity + '&currentActivityHours=' + document.getElementById("pfpage:pfform:repeatId:" + count + ":defaultValue").value);
+          $(document.body).click(function(e) {
+            if( !$(e.target).is("input") ) {
+              sforce.one.navigateToURL('/apex/Planforce_Main_Detail?activity=' + activity + '&currentActivityHours=' + document.getElementById("pfpage:pfform:repeatId:" + count + ":defaultValue").value);
+            }
+          });
         }
 
       function nextWeek(endOfWeek) {
@@ -194,16 +199,15 @@
                                     currentWeekHours.push('{!activity.Current_Week_Hours__c}');
                                 </script> 
                                 <li style="padding: 24.5px;">
-                                   <div style="float:left; width: 120px;">
-                                       <a href="javascript:navigateToDetailPage('{!activity.Activity_Name__c}','{!count}');">{!activity.Activity_Name__c}</a>
-                                   </div>
-                                   <div style="width: 45px; margin-left:140px; ">        
-                                           <apex:inputtext value="{!defaultValue}" id="defaultValue"/>
-                                           
+                                  <a href="javascript:navigateToDetailPage('{!activity.Activity_Name__c}','{!count}');">
+                                    <div style="float:left; width: 120px;">{!activity.Activity_Name__c}</div>
+                                    <div style="width: 45px; margin-left:140px; ">        
+                                      <apex:inputtext value="{!defaultValue}" id="defaultValue"/>
                                     </div>
                                     <div style="float:right;">
-                                           <a href="javascript:navigateToDetailPage('{!activity.Activity_Name__c}','{!count}');"><div class="list-view-icons"><span class="icon-right-arrow">&nbsp;</span></div></a>
-                                       </div>
+                                      <div class="list-view-icons"><span class="icon-right-arrow">&nbsp;</span></div>
+                                    </div>
+                                  </a>  
                                 </li>
                                 <apex:variable value="{!count+1}" var="count"/>
                             </apex:repeat>
