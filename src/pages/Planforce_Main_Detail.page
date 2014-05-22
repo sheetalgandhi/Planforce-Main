@@ -4,7 +4,7 @@
   applyBodyTag="false"
   showHeader="false"
   sidebar="false" 
-  controller="Planforce_Main_Controller">
+  controller="Planforce_Main_Controller" id="pfpagedetail">
   
     <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'icons.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'styles.css')}"/>
@@ -31,17 +31,17 @@
         function  save_total(activity){
             var total = 0;
             for (var i = 0; i < 7; i++) {
-                total = total + parseInt (document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value,10);
+                total = total + parseInt (document.getElementById("pfpagedetail:pfformdetail:weekId:" + i + ":dayId").value,10);
             }                
             sforce.one.navigateToURL('/apex/Planforce_Main?totalHours=' + total + '&activity=' + activity + '&onload=true');
         }
         function loadWeek() {
           var currentActivityHours = '{!$CurrentPage.parameters.currentActivityHours}';
-          currentActivityHours = currentActivityHours/7;
-          for (var i = 0; i < 7; i++) {
+          currentActivityHours = currentActivityHours/5;
+          for (var i = 1; i < 6; i++) {
               //document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = Math.round(currentActivityHours);
-              //document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = currentActivityHours;
-              document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = Math.ceil(currentActivityHours * 100)/100;
+              document.getElementById("pfpagedetail:pfformdetail:weekId:" + i + ":dayId").value = currentActivityHours;
+              //document.getElementById("pfpagedetail:pfformdetail:weekId:" + i + ":dayId").value = Math.ceil(currentActivityHours * 100)/100;
           }                
               
         }
@@ -77,7 +77,7 @@
       </head>   
     <div id="one-app">
     <center>
-        <apex:form >
+        <apex:form id="pfformdetail">
             <apex:outputPanel id="errors">
                 <apex:pageMessages />
             </apex:outputPanel>
@@ -91,16 +91,18 @@
                     <section>
                         <center><h1>{!$CurrentPage.parameters.activity}</h1></center>
                     </section>    
-                    <section>
+                    <section style="border-bottom:none;">
                         <ul class="list-plain fw-normal bg-2 man pan">
                             <apex:repeat value="{!wholeWeek}" var="day" id="weekId">
                                 <li class="active--list-1 pam text-color-1 f4 border-bottom border--3">
-                                    <table width="100%">
-                                        <tr>
-                                            <td width="50%">{!day}</td>
-                                            <td width="50%"><apex:inputtext value="{!defaultValue}" id="dayId"/></td>
-                                        </tr>
-                                    </table>
+                                    <div align="center">
+                                       <div style="float:left;margin-top:15px;">
+                                           {!day}
+                                       </div>
+                                       <div style="width:60px;margin-left:60px;">
+                                           <apex:inputtext value="{!defaultValue}" id="dayId"/>
+                                        </div>
+                                    </div>
                                 </li>    
                             </apex:repeat>
                         </ul>

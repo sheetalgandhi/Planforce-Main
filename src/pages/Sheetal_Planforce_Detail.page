@@ -4,7 +4,7 @@
   applyBodyTag="false"
   showHeader="false"
   sidebar="false" 
-  controller="Sheetal_Planforce_Controller">
+  controller="Sheetal_Planforce_Controller" id="pfpagedetail">
   
     <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'icons.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.OneStarter,'styles.css')}"/>
@@ -31,7 +31,7 @@
         function  save_total(activity){
             var total = 0;
             for (var i = 0; i < 7; i++) {
-                total = total + parseInt (document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value,10);
+                total = total + parseInt (document.getElementById("pfpagedetail:pfformdetail:weekId:" + i + ":dayId").value,10);
             }                
             sforce.one.navigateToURL('/apex/Sheetal_Planforce?totalHours=' + total + '&activity=' + activity + '&onload=true');
         }
@@ -40,7 +40,7 @@
           currentActivityHours = currentActivityHours/5;
           for (var i = 1; i < 6; i++) {
              //document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = Math.round(currentActivityHours);
-              document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = currentActivityHours;
+              document.getElementById("pfpagedetail:pfformdetail:weekId:" + i + ":dayId").value = currentActivityHours;
             //document.getElementById("j_id0:j_id10:weekId:" + i + ":dayId").value = Math.ceil(currentActivityHours * 100)/100;
           }                
               
@@ -65,7 +65,7 @@
               <span class="text-color-5 dib lh-44 fw-semibold f3">Weekly Details</span>
         </header>     
     <center>
-        <apex:form >
+        <apex:form id="pfformdetail">
             <div id="form">
                 <section>
                     <h1>Sheetal Test Weekly Details</h1>
