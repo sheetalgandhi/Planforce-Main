@@ -1,0 +1,233 @@
+{
+    "properties": [], 
+    "methods": [
+        {
+            "modifiers": [], 
+            "name": "loginResponse", 
+            "parameters": [
+                {
+                    "type": "String", 
+                    "name": "userName"
+                }, 
+                {
+                    "type": "String", 
+                    "name": "password"
+                }, 
+                {
+                    "type": "String", 
+                    "name": "dataSource"
+                }
+            ], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 17, 
+                "line": 3
+            }, 
+            "returnType": "String", 
+            "type": null
+        }, 
+        {
+            "modifiers": [], 
+            "name": "invokeExternalWs", 
+            "parameters": [], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 17, 
+                "line": 48
+            }, 
+            "returnType": "void", 
+            "type": null
+        }
+    ], 
+    "innerClasses": [], 
+    "variables": [
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 38, 
+                "line": 3
+            }, 
+            "name": "userName"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 54, 
+                "line": 3
+            }, 
+            "name": "password"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 70, 
+                "line": 3
+            }, 
+            "name": "dataSource"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 12, 
+                "line": 5
+            }, 
+            "name": "LoginResultCookie"
+        }, 
+        {
+            "type": "HttpRequest", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 17, 
+                "line": 7
+            }, 
+            "name": "httpRequest"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 12, 
+                "line": 13
+            }, 
+            "name": "soapRequest"
+        }, 
+        {
+            "type": "Http", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 10, 
+                "line": 24
+            }, 
+            "name": "http"
+        }, 
+        {
+            "type": "HttpResponse", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 20, 
+                "line": 27
+            }, 
+            "name": "response"
+        }, 
+        {
+            "type": "Document", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 20, 
+                "line": 35
+            }, 
+            "name": "doc"
+        }, 
+        {
+            "type": "XmlNode", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 19, 
+                "line": 37
+            }, 
+            "name": "domRoot"
+        }, 
+        {
+            "type": "XmlNode", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 19, 
+                "line": 38
+            }, 
+            "name": "domBody"
+        }, 
+        {
+            "type": "XmlNode", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 19, 
+                "line": 39
+            }, 
+            "name": "domLoginResponse"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 14, 
+                "line": 50
+            }, 
+            "name": "LoginResultCookie"
+        }, 
+        {
+            "type": "HttpRequest", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 52
+            }, 
+            "name": "reqUpsert"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 16, 
+                "line": 59
+            }, 
+            "name": "b"
+        }, 
+        {
+            "type": "Http", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 14, 
+                "line": 76
+            }, 
+            "name": "httpUpsert"
+        }, 
+        {
+            "type": "HttpResponse", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 79
+            }, 
+            "name": "resUpsert"
+        }
+    ], 
+    "constructors": [], 
+    "namespace": null, 
+    "name": "callExternalWS", 
+    "tableDeclaration": {
+        "type": "callExternalWS", 
+        "modifiers": [], 
+        "references": [], 
+        "location": {
+            "column": 14, 
+            "line": 1
+        }, 
+        "name": "callExternalWS"
+    }, 
+    "key": "01pi0000005nUmB", 
+    "id": "01pi0000005nUmB", 
+    "externalReferences": []
+}
