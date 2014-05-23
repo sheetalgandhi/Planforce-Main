@@ -1,4 +1,4 @@
-public class Planforce_Main_Controller {
+public class Subodhini_Controller {
 
     public String nextPage { get; set; }
     public String myString {get; set;}
@@ -36,7 +36,7 @@ public class Planforce_Main_Controller {
          upsert act;
       }
       
-      PageReference gotoNextPage = new PageReference('/apex/Sheetal_Planforce?flag=true');   
+      PageReference gotoNextPage = new PageReference('/apex/Subodhini_Detail?flag=true');   
             gotoNextPage.setRedirect(true);
             return gotonextpage;
        
@@ -47,7 +47,7 @@ public class Planforce_Main_Controller {
 //         return null;
 //    }
 
-    public Planforce_Main_Controller() {
+    public Subodhini_Controller() {
         setUserName();
         myString = '';
         defaultValue = 0;
@@ -126,7 +126,7 @@ public class Planforce_Main_Controller {
     }
     public PageReference getNextPage(){
         try{
-            PageReference gotoNextPage = new PageReference('/apex/second_page');   
+            PageReference gotoNextPage = new PageReference('/apex/Subodhini_Detail');   
             gotoNextPage.setRedirect(true);
             return gotonextpage;
         }

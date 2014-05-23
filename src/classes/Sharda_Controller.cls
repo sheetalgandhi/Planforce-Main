@@ -1,10 +1,8 @@
-public class Sharda_Controller{
-
-
+public class Sharda_Controller {
 
     public String nextPage { get; set; }
     public String myString {get; set;}
-    public Integer defaultValue {get; set;}
+    public Decimal defaultValue {get; set;}
      public String allHours {get; set;}
      public String currentHours {get; set;}    
 //     public String total {get; set;}
@@ -44,7 +42,6 @@ public class Sharda_Controller{
        
     }
     
-
 
 //        public PageReference saveCurrentHours() {
 //         return null;
@@ -113,7 +110,7 @@ public class Sharda_Controller{
     public List<Activity_Resource__c> activityList{
         get {
             //PlanviewCallout.planviewCalloutSOAP();
-            return [SELECT Activity_Name__c, Last_Week_Hours__c, Current_Week_Hours__c FROM Activity_Resource__c WHERE Resource_Name__c = :UserInfo.getUserId()];
+            return [SELECT Activity_Name__c, Last_Week_Hours__c, Current_Week_Hours__c FROM Activity_Resource__c WHERE Resource_Name__c = :UserInfo.getUserId()  order by flag__c,Activity_Name__c];
         }
         set;
     }
@@ -129,7 +126,7 @@ public class Sharda_Controller{
     }
     public PageReference getNextPage(){
         try{
-            PageReference gotoNextPage = new PageReference('/apex/second_page_sharda');   
+            PageReference gotoNextPage = new PageReference('/apex/second_page');   
             gotoNextPage.setRedirect(true);
             return gotonextpage;
         }

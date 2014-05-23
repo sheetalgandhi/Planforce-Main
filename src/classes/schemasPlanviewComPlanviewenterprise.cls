@@ -38,7 +38,7 @@ public class schemasPlanviewComPlanviewenterprise {
         private String[] GeneralErrorMessage_type_info = new String[]{'GeneralErrorMessage','http://schemas.planview.com/PlanviewEnterprise/OpenSuite/OpenSuiteResult/2010/01/01',null,'0','1','true'};
         private String[] Successes_type_info = new String[]{'Successes','http://schemas.planview.com/PlanviewEnterprise/OpenSuite/OpenSuiteResult/2010/01/01',null,'0','1','true'};
         private String[] Warnings_type_info = new String[]{'Warnings','http://schemas.planview.com/PlanviewEnterprise/OpenSuite/OpenSuiteResult/2010/01/01',null,'0','1','true'};
-        private String[] apex_schema_type_info = new String[]{'http://schemas.planview.com/PlanviewEnterprise/OpenSuite/OpenSuiteResult/2010/01/01','true','false'};
+        private String[] apex_schema_type_info = new String[]{'http://schemas.planview.com/PlanviewEnterprise/OpenSuite/OpenSuiteResult/2010/01/01','false','false'};
         private String[] field_order_type_info = new String[]{'Failures','GeneralErrorMessage','Successes','Warnings'};
     }
     public class ReserveDto {
@@ -1397,7 +1397,7 @@ public class schemasPlanviewComPlanviewenterprise {
     }
     public class TimeReportedStatus {
         public schemasPlanviewComPlanviewenterprise.TimeReportedDto Dto;
-        private String[] Dto_type_info = new String[]{'Dto','http://schemas.planview.com/PlanviewEnterprise/OpenSuite/TimeReportedStatus/2013/03',null,'0','1','true'};
+        private String[] Dto_type_info = new String[]{'Dto','http://schemas.planview.com/PlanviewEnterprise/OpenSuite/TimeReportedStatus/2013/03',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://schemas.planview.com/PlanviewEnterprise/OpenSuite/TimeReportedStatus/2013/03','true','false'};
         private String[] field_order_type_info = new String[]{'Dto'};
     }
